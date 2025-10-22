@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+(function() {
+  // Helper to safely serialize arguments
+  function serializeArgs(args) {
+    return Array.from(args).map(arg => {
+      try {
+        if (arg instanceof Error) {
+          return { type: 'Error', message: arg.message, stack: arg.stack };
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          return JSON.parse(JSON.stringify(arg));
+        }
+        return arg;
+      } catch (e) {
+        return String(arg);
+      }
+    });
+  }
+
+  // Override console methods
+  const originalConsole = {
+    log: console.log,
+    error: console.error,
+    warn: console.warn,
+    info: console.info,
+    debug: console.debug
+  };
+
+  ['log', 'error', 'warn', 'info', 'debug'].forEach(level => {
+    console[level] = function(...args) {
+      originalConsole[level].apply(console, args);
+      try {
+        window.parent.postMessage({
+          type: 'console',
+          level: level,
+          args: serializeArgs(args),
+          timestamp: new Date().toISOString()
+        }, '*');
+      } catch (e) {
+        originalConsole.error('Failed to send console message:', e);
+      }
+    };
+  });
+
+  // Capture runtime errors
+  window.onerror = function(message, source, lineno, colno, error) {
+    window.parent.postMessage({
+      type: 'error',
+      message: message,
+      source: source,
+      lineno: lineno,
+      colno: colno,
+      stack: error?.stack,
+      timestamp: new Date().toISOString()
+    }, '*');
+    return false;
+  };
+
+  // Capture unhandled promise rejections
+  window.addEventListener('unhandledrejection', function(event) {
+    window.parent.postMessage({
+      type: 'rejection',
+      reason: event.reason instanceof Error ? {
+        message: event.reason.message,
+        stack: event.reason.stack
+      } : String(event.reason),
+      timestamp: new Date().toISOString()
+    }, '*');
+  });
+
+  // Capture network requests (fetch)
+  const originalFetch = window.fetch;
+  window.fetch = function(...args) {
+    const url = args[0];
+    const startTime = Date.now();
+
+    return originalFetch.apply(this, args)
+      .then(response => {
+        window.parent.postMessage({
+          type: 'network',
+          method: 'fetch',
+          url: String(url),
+          status: response.status,
+          duration: Date.now() - startTime,
+          timestamp: new Date().toISOString()
+        }, '*');
+        return response;
+      })
+      .catch(error => {
+        window.parent.postMessage({
+          type: 'network',
+          method: 'fetch',
+          url: String(url),
+          error: error.message,
+          duration: Date.now() - startTime,
+          timestamp: new Date().toISOString()
+        }, '*');
+        throw error;
+      });
+  };
+
+  // Track URL navigation
+  function sendUrlUpdate() {
+    window.parent.postMessage({
+      type: 'navigation',
+      url: window.location.href,
+      timestamp: new Date().toISOString()
+    }, '*');
+  }
+
+  // Send initial URL
+  sendUrlUpdate();
+
+  // Intercept pushState and replaceState for SPA navigation
+  const originalPushState = history.pushState;
+  const originalReplaceState = history.replaceState;
+
+  history.pushState = function(...args) {
+    originalPushState.apply(this, args);
+    sendUrlUpdate();
+  };
+
+  history.replaceState = function(...args) {
+    originalReplaceState.apply(this, args);
+    sendUrlUpdate();
+  };
+
+  // Track popstate (back/forward navigation)
+  window.addEventListener('popstate', sendUrlUpdate);
+
+  // Track hashchange
+  window.addEventListener('hashchange', sendUrlUpdate);
+
+  // Listen for screenshot requests from parent
+  window.addEventListener('message', async function(event) {
+    if (event.data && event.data.type === 'request_screenshot') {
+      const { x, y, width, height, requestId } = event.data;
+
+      try {
+        // Use dom-to-image-more (lighter than html2canvas)
+        if (!window.domtoimage) {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/dom-to-image-more@2.8.0/dist/dom-to-image-more.min.js';
+          await new Promise((resolve, reject) => {
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+            setTimeout(resolve, 1000); // Fallback timeout
+          });
+        }
+
+        // Capture the body as PNG
+        const dataUrl = await window.domtoimage.toPng(document.body, {
+          quality: 0.8,
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+
+        // Create image from data URL
+        const img = new Image();
+        img.src = dataUrl;
+        await new Promise(resolve => { img.onload = resolve; });
+
+        // Crop to the requested region
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, x, y, width, height, 0, 0, width, height);
+
+        // Convert to data URL
+        const croppedDataUrl = canvas.toDataURL('image/png');
+
+        // Send back to parent
+        window.parent.postMessage({
+          type: 'screenshot_response',
+          requestId: requestId,
+          dataUrl: croppedDataUrl
+        }, '*');
+      } catch (error) {
+        console.error('Screenshot error:', error);
+        window.parent.postMessage({
+          type: 'screenshot_error',
+          requestId: requestId,
+          error: error.message || 'Screenshot failed'
+        }, '*');
+      }
+    }
+  });
+
+  // Send ready message
+  window.parent.postMessage({
+    type: 'ready',
+    timestamp: new Date().toISOString()
+  }, '*');
+})();
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RedSwan | Tokenizing Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
