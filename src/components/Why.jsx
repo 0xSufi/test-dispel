@@ -51,7 +51,7 @@ export default function Why() {
             variants={staggerItem}
             whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
           >
-            <img src="https://images.unsplash.com/photo-1465800872432-fffb7f0e9560?auto=format&fit=crop&w=420&q=80" alt="Skyline at dusk" />
+            <img src="https://placehold.co/420x280/334155/e2e8f0?text=Skyline+at+Dusk" alt="Skyline at dusk" />
             <div>
               <h3>Global Reach</h3>
               <p>Access a borderless network of accredited investors with compliant digital onboarding.</p>
