@@ -56,7 +56,7 @@ export const CONTRACTS = {
   // Example property token on Polygon Amoy testnet
   PROPERTY_TOKEN_1: {
     address: '0x0000000000000000000000000000000000000000', // Replace with real address
-    name: 'RedSwan Property Token Alpha',
+    name: 'Astarte Property Token Alpha',
     symbol: 'RSPT-A',
     network: 'POLYGON_AMOY',
     propertyName: 'Downtown Manhattan Office Tower',
@@ -66,7 +66,7 @@ export const CONTRACTS = {
   },
   PROPERTY_TOKEN_2: {
     address: '0x0000000000000000000000000000000000000000', // Replace with real address
-    name: 'RedSwan Property Token Beta',
+    name: 'Astarte Property Token Beta',
     symbol: 'RSPT-B',
     network: 'POLYGON_AMOY',
     propertyName: 'Miami Luxury Residential Complex',
