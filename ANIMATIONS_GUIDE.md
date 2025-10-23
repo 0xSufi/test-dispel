@@ -1,7 +1,7 @@
-# RedSwan Animations Implementation Guide
+# Astarte Animations Implementation Guide
 
 ## Overview
-This document outlines all the animations implemented across the RedSwan tokenized real estate platform using Framer Motion.
+This document outlines all the animations implemented across the Astarte tokenized real estate platform using Framer Motion.
 
 ## Animation System Architecture
 

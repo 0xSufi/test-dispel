@@ -1,11 +1,11 @@
-# RedSwan - React Application
+# Astarte - React Application
 
-A modern React application for RedSwan's tokenized real estate platform, built with Vite.
+A modern React application for Astarte's tokenized real estate platform, built with Vite.
 
 ## Project Structure
 
 ```
-redswan/
+astarte/
 ├── src/
 │   ├── components/         # React components
 │   │   ├── Header.jsx

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This RedSwan application now includes a minimal viable product (MVP) web3 integration that provides:
+This Astarte application now includes a minimal viable product (MVP) web3 integration that provides:
 
 - ✅ MetaMask wallet connection
 - ✅ Multi-network support (Polygon, Ethereum, Hedera-ready)
@@ -66,7 +66,7 @@ Currently, the app uses **placeholder/mock contracts**. When you have real contr
 export const CONTRACTS = {
   PROPERTY_TOKEN_1: {
     address: '0xYourRealContractAddress', // ← Update this
-    name: 'RedSwan Property Token Alpha',
+    name: 'Astarte Property Token Alpha',
     symbol: 'RSPT-A',
     network: 'POLYGON_AMOY',          // or 'POLYGON_MAINNET'
     propertyName: 'Downtown Manhattan Office Tower',
@@ -174,7 +174,7 @@ Example:
 ```javascript
 PROPERTY_TOKEN_3: {
   address: '0xNewContractAddress',
-  name: 'RedSwan Property Token Gamma',
+  name: 'Astarte Property Token Gamma',
   symbol: 'RSPT-G',
   network: 'POLYGON_AMOY',
   propertyName: 'Austin Tech Campus',
@@ -272,20 +272,20 @@ For questions or issues with the web3 integration, check:
 ## File Structure Reference
 
 **Configuration**:
-- `/workspace/redswan/src/config/web3Config.js:1` - All web3 settings
+- `/workspace/astarte/src/config/web3Config.js:1` - All web3 settings
 
 **State Management**:
-- `/workspace/redswan/src/contexts/Web3Context.jsx:1` - Wallet state
-- `/workspace/redswan/src/hooks/useWallet.js:1` - Hook interface
+- `/workspace/astarte/src/contexts/Web3Context.jsx:1` - Wallet state
+- `/workspace/astarte/src/hooks/useWallet.js:1` - Hook interface
 
 **UI Components**:
-- `/workspace/redswan/src/components/web3/WalletButton.jsx:1`
-- `/workspace/redswan/src/components/web3/AccountDropdown.jsx:1`
-- `/workspace/redswan/src/components/web3/NetworkIndicator.jsx:1`
-- `/workspace/redswan/src/components/web3/TokenBalance.jsx:1`
-- `/workspace/redswan/src/components/web3/PropertyMetadata.jsx:1`
-- `/workspace/redswan/src/components/web3/InvestorDashboard.jsx:1`
-- `/workspace/redswan/src/components/web3/ErrorNotification.jsx:1`
+- `/workspace/astarte/src/components/web3/WalletButton.jsx:1`
+- `/workspace/astarte/src/components/web3/AccountDropdown.jsx:1`
+- `/workspace/astarte/src/components/web3/NetworkIndicator.jsx:1`
+- `/workspace/astarte/src/components/web3/TokenBalance.jsx:1`
+- `/workspace/astarte/src/components/web3/PropertyMetadata.jsx:1`
+- `/workspace/astarte/src/components/web3/InvestorDashboard.jsx:1`
+- `/workspace/astarte/src/components/web3/ErrorNotification.jsx:1`
 
 **Styling**:
-- `/workspace/redswan/src/styles/web3.css:1` - All web3 styles
+- `/workspace/astarte/src/styles/web3.css:1` - All web3 styles
