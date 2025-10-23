@@ -17,7 +17,7 @@ export default function Header() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <a href="#home" className="brand">Red<span>Swan</span></a>
+        <a href="#home" className="brand">As<span>tarte</span></a>
         <div className="nav-links">
           <a href="#about">About</a>
           <a href="#solutions">Solutions</a>
@@ -63,7 +63,7 @@ export default function Header() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
         >
-          RedSwan fractionalizes institutional-grade properties so you can access real estate deals with greater liquidity, lower minimums, and streamlined compliance.
+          Astarte fractionalizes institutional-grade properties so you can access real estate deals with greater liquidity, lower minimums, and streamlined compliance.
         </motion.p>
         <motion.div
           className="hero-actions"

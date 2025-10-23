@@ -5,10 +5,10 @@ export default function Footer() {
     <footer className="footer" id="contact">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <a href="#home" className="brand">Red<span>Swan</span></a>
+          <a href="#home" className="brand">As<span>tarte</span></a>
           <p>Tokenizing institutional commercial real estate for global investors.</p>
           <div className="footer-meta">
-            <span>hello@redswan.io</span>
+            <span>hello@astarte.io</span>
             <span>+1 (713) 555-0182</span>
           </div>
         </div>
@@ -36,7 +36,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>&copy; 2024 RedSwan Exchange. All rights reserved.</span>
+        <span>&copy; 2024 Astarte Exchange. All rights reserved.</span>
         <a href="#home" className="back-to-top">Back to top</a>
       </div>
     </footer>
