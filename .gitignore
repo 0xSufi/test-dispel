@@ -34,3 +34,6 @@ lerna-debug.log*
 # Python virtual environment
 .venv/
 venv/
+
+# Screenshots
+screenshot-*.png
