@@ -15,7 +15,7 @@ export default function Process() {
         >
           <p className="eyebrow">Onboarding</p>
           <h2>Getting started is easy.</h2>
-          <p>From onboarding to secondary trading, RedSwan guides you every step of the way.</p>
+          <p>From onboarding to secondary trading, Astarte guides you every step of the way.</p>
         </motion.header>
         <motion.div
           className="step-grid"
@@ -49,7 +49,7 @@ export default function Process() {
           >
             <div className="step-icon">03</div>
             <h3>Manage investors and liquidity</h3>
-            <p>Track performance, pay dividends, and enable compliant secondary trading through RedSwan Exchange.</p>
+            <p>Track performance, pay dividends, and enable compliant secondary trading through Astarte Exchange.</p>
           </motion.article>
         </motion.div>
         <motion.div

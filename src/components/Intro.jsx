@@ -14,8 +14,8 @@ export default function Intro() {
           viewport={viewport}
           variants={slideInLeft}
         >
-          <p className="eyebrow">About RedSwan</p>
-          <h2>RedSwan is a full-service global facilitator digitizing institutional real estate investments.</h2>
+          <p className="eyebrow">About Astarte</p>
+          <h2>Astarte is a full-service global facilitator digitizing institutional real estate investments.</h2>
           <p>Our capital markets team tokenizes quality commercial real estate so investors can participate in deals previously reserved for private networks.</p>
           <motion.a
             className="btn small"

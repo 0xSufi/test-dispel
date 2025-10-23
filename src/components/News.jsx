@@ -15,7 +15,7 @@ export default function News() {
         >
           <p className="eyebrow">Insights</p>
           <h2>Latest news and updates.</h2>
-          <p>Stay informed on RedSwan announcements, tokenized offerings, and market commentary.</p>
+          <p>Stay informed on Astarte announcements, tokenized offerings, and market commentary.</p>
         </motion.header>
         <motion.div
           className="news-grid"
@@ -30,7 +30,7 @@ export default function News() {
             whileHover={{ y: -6, transition: { duration: 0.3 } }}
           >
             <span className="news-tag">Press Release</span>
-            <h3>RedSwan completes Series B to scale tokenization services</h3>
+            <h3>Astarte completes Series B to scale tokenization services</h3>
             <p>New funding accelerates platform automation, global partnerships, and institutional onboarding.</p>
             <a className="text-link" href="#contact">Read announcement</a>
           </motion.article>
@@ -50,7 +50,7 @@ export default function News() {
             whileHover={{ y: -6, transition: { duration: 0.3 } }}
           >
             <span className="news-tag">Case Study</span>
-            <h3>How a multifamily portfolio unlocked liquidity via RedSwan</h3>
+            <h3>How a multifamily portfolio unlocked liquidity via Astarte</h3>
             <p>Tokenization enabled recapitalization while delivering flexibility to existing LPs.</p>
             <a className="text-link" href="#projects">Explore the case study</a>
           </motion.article>

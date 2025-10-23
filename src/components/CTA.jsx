@@ -13,7 +13,7 @@ export default function CTA() {
           variants={slideInLeft}
         >
           <p className="eyebrow light">Ready to digitize your next raise?</p>
-          <h2>Partner with RedSwan to launch your tokenized offering.</h2>
+          <h2>Partner with Astarte to launch your tokenized offering.</h2>
         </motion.div>
         <motion.a
           className="btn"

@@ -14,7 +14,7 @@ export default function Benefits() {
           variants={fadeInUp}
         >
           <p className="eyebrow">Benefits</p>
-          <h2>Benefits of investing with RedSwan.</h2>
+          <h2>Benefits of investing with Astarte.</h2>
           <p>Diversify into stabilized, income-producing real estate with tailored investor protections.</p>
         </motion.header>
         <motion.div
